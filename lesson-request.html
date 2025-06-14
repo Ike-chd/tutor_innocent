@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Request a Lesson - Innocent Moyo</title>
+    <link rel="stylesheet" href="css/lessonrequest.css">
+</head>
+
+<body>
+    <h1>Request a Lesson</h1>
+    <form id="lessonForm">
+        <label for="grade">Grade</label>
+        <select id="grade" required>
+            <option value="">Select Grade</option>
+            <option value="10">Grade 10</option>
+            <option value="11">Grade 11</option>
+            <option value="12">Grade 12</option>
+        </select>
+
+        <label for="subject">Subject</label>
+        <select id="subject" required>
+            <option value="">Select Subject</option>
+            <option value="Mathematics">Mathematics</option>
+            <option value="Physical Sciences">Physical Sciences</option>
+        </select>
+
+        <label for="time">Preferred Time (in 30 min intervals)</label>
+        <input type="text" id="time" placeholder="e.g. 10:00 AM or 2:30 PM" required />
+
+        <label for="location">Location</label>
+        <input type="text" id="location" placeholder="Online / My house / Tutor's place" required />
+
+        <label for="method">Preferred Contact Method</label>
+        <select id="method" required>
+            <option value="">Choose Method</option>
+            <option value="sms">SMS</option>
+            <option value="whatsapp">WhatsApp</option>
+            <option value="email">Email</option>
+        </select>
+
+        <label for="contact">Your Contact</label>
+        <input type="text" id="contact" placeholder="Phone number or email" required />
+
+        <button type="submit">Send Request</button>
+    </form>
+
+    <script>
+        document.getElementById('lessonForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const grade = document.getElementById('grade').value;
+            const subject = document.getElementById('subject').value;
+            const time = document.getElementById('time').value;
+            const location = document.getElementById('location').value;
+            const method = document.getElementById('method').value;
+            const contact = document.getElementById('contact').value;
+
+            const message = `Lesson Request:%0AGrade: ${grade}%0ASubject: ${subject}%0ATime: ${time}%0ALocation: ${location}%0AContact Method: ${method}%0AContact Info: ${contact}`;
+
+            if (method === 'whatsapp') {
+                window.open(`https://wa.me/27664658297?text=${message}`, '_blank');
+            } else if (method === 'sms') {
+                window.open(`sms:0664658297?body=${message}`, '_blank');
+            } else if (method === 'email') {
+                window.location.href = `mailto:mi.mathematics.tutor@gmail.com?subject=Lesson Request&body=${message}`;
+            } else {
+                alert('Please select a valid contact method.');
+            }
+        });
+    </script>
+</body>
+</html>
